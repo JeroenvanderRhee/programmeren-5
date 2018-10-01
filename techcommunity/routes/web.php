@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/news', function () {
+	$url = "1/";
+	$url .= str_replace(" ","-","Titel van dit project");
+	$data = array(
+		'id' => "1",
+		'title' => "Titel",
+		'description' => "Beschrijving",
+		'url' => $url,);
+    return view('pages.news') -> with($data);
+});
