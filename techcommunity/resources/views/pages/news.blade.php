@@ -51,6 +51,7 @@ a:hover{
 
 </style>
 
+@foreach(posts as post)
 <div id="post">
 	<img src="http://www.wassenaarders.nl/images/2016/08/11/dory_large.jpg"/>
 	
@@ -64,4 +65,5 @@ a:hover{
 		<a href="/posts/{{$url}}">Read more...</a>
 	</div>
 </div>
+@endforeach
 		

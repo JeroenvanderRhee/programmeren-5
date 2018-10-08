@@ -21,6 +21,7 @@ Route::get('/news', function () {
 
 	$url = "1/";
 	$url .= str_replace(" ","-","Titel van dit project");
+	
 	$data = array(
 		'id' => "1",
 		'title' => "Titel van het project",
