@@ -1,7 +1,7 @@
 <h1>News</h1>
 
 <style>
-#post{
+.post-div{
 	margin-top:10px;
 	margin-bottom:10px;
 	-webkit-box-shadow: 2px 2px 20px -4px rgba(0,0,0,0.67);
@@ -51,19 +51,35 @@ a:hover{
 
 </style>
 
-@foreach(posts as post)
-<div id="post">
-	<img src="http://www.wassenaarders.nl/images/2016/08/11/dory_large.jpg"/>
-	
-	<div class="text-section">
-		<h2>
-			{{$title}}
-		</h2>
-		<p>
-			{{$description}}
-		</p>
-		<a href="/posts/{{$url}}">Read more...</a>
-	</div>
-</div>
-@endforeach
+
+
+	@if(count($posts) >= 1)
+
+		@foreach($posts as $post)
+
+			<div class="post-div">
+				<img src="{{$post->uploaded_file}}"/>
+				
+				<div class="text-section">
+					<h2>
+						{{$post->title}}
+					</h2>
+					<p>
+						{{$post->description_post}}
+					</p>
+					<a href="posts/{{$post->id}}">Read more...</a>
+				</div>
+			</div>
+
+		@endforeach
+
+	@else
+
+		<p>No Posts found</p>
+
+	@endif
+
+
+
+
 		
