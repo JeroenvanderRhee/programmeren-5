@@ -36,7 +36,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $table = new Newspost();
+        $table->url = "URL";   
+        $table->title = "DB POST";
+        $table->description_post = "Description";
+        $table->long_text = "Long Text";
+        $table->uploaded_file = "";
+        $table->created_at_date = "2018-10-12";
+        $table->created_by_user = "Jeroen";
+        $table->ip_created_at = "185.56.145.144";   
+        $table->active = "1";
+        $table->save();
+
     }
 
     /**
