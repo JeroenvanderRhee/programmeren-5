@@ -26,6 +26,7 @@ class PostController extends Controller
     public function create()
     {
         //
+        return view("pages.create");
     }
 
     /**
@@ -47,6 +48,7 @@ class PostController extends Controller
         $table->ip_created_at = "185.56.145.144";   
         $table->active = "1";
         $table->save();
+
 
     }
 
@@ -71,6 +73,8 @@ class PostController extends Controller
     public function edit($id)
     {
         //
+        // $post = Newspost::find($id->id)
+        // return $post;
     }
 
     /**
