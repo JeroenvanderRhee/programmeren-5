@@ -38,25 +38,33 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'post_Title'=>'required',
-        'post_Body'=> 'required',
-        'post_Description' => 'required'
+        'title'=>'required',
+        'description_post'=> 'required',
+        'long_text' => 'required'
       ]);
 
-      $table = new Newspost([
-        'title' => $request->get('share_name'),
-        'description_post'=> $request->get('share_price'),
-        'long_text'=> $request->get('share_qty'),
-        'uploaded_file'=> "https://disney-plaatjes.nl/files/disney/mickey-mouse/mickey-mouse-disney-829.jpg",
-        'created_at_date'=> date("Y-m-d h:i:sa"),
-        'created_by_user'=> "Jeroen",
-        'ip_created_at'=> $_SERVER['REMOTE_ADDR'],
-        'active'=> 1
-      ]);
+
+
+       // $table = new Newspost([
+       //  'uploaded_file'=> "https://disney-plaatjes.nl/files/disney/mickey-mouse/mickey-mouse-disney-829.jpg",
+       //  'created_at_date'=> date("Y-m-d h:i:sa"),
+       //  'created_by_user'=> "Jeroen",
+       //  'ip_created_at'=> $_SERVER['REMOTE_ADDR'],
+       //  'active'=> "1"]);
+
+      $table = new Newspost();
+      $table->title = $request->get('title');
+      $table->url = "URL";
+      $table->description_post = $request->get('description_post');
+      $table->long_text = $request->get('long_text');
+      $table->uploaded_file = "https://disney-plaatjes.nl/files/disney/mickey-mouse/mickey-mouse-disney-829.jpg";
+      $table->created_at_date = date("Y-m-d H:i:s");
+      $table->created_by_user = "Jeroen";
+      $table->ip_created_at = $_SERVER['REMOTE_ADDR'];
+      $table->active = 1;
       $table->save();
-      
-      $posts =  Newspost::all();
-        return view("pages.news")->with('posts', $posts);
+    
+       return "Saved";
     }
 
     /**

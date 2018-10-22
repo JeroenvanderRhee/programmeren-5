@@ -30,7 +30,7 @@ Route::get('welcome', function () {
 //     return view('pages.news') -> with($data);
 // });
 
-Route::resource('/', 'PostController');
+Route::resource('posts', 'PostController');
 Route::get('form', function () {
     return view('pages.create');
 });
