@@ -37,19 +37,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $table = new Newspost();
-        $table->url = "URL";   
-        $table->title = "DB POST";
-        $table->description_post = "Description";
-        $table->long_text = "Long Text";
-        $table->uploaded_file = "";
-        $table->created_at_date = "2018-10-12";
-        $table->created_by_user = "Jeroen";
-        $table->ip_created_at = "185.56.145.144";   
-        $table->active = "1";
-        $table->save();
+        $request->validate([
+        'post_Title'=>'required',
+        'post_Body'=> 'required',
+        'post_Description' => 'required'
+      ]);
 
-
+      $table = new Newspost([
+        'title' => $request->get('share_name'),
+        'description_post'=> $request->get('share_price'),
+        'long_text'=> $request->get('share_qty'),
+        'uploaded_file'=> "https://disney-plaatjes.nl/files/disney/mickey-mouse/mickey-mouse-disney-829.jpg",
+        'created_at_date'=> date("Y-m-d h:i:sa"),
+        'created_by_user'=> "Jeroen",
+        'ip_created_at'=> $_SERVER['REMOTE_ADDR'],
+        'active'=> 1
+      ]);
+      $table->save();
+      
+      $posts =  Newspost::all();
+        return view("pages.news")->with('posts', $posts);
     }
 
     /**
