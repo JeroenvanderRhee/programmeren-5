@@ -1,4 +1,5 @@
-@section('news')
+@extends('pages.default')
+@section('content')
 
 <h1>News</h1>
 
@@ -81,4 +82,4 @@ a:hover{
 
 	@endif
 
-@show		
+@endsection		

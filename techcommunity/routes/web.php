@@ -31,7 +31,3 @@ Route::get('welcome', function () {
 // });
 
 Route::resource('posts', 'PostController');
-
-Route::get('header', function () {
-    return view('includes.header');
-});

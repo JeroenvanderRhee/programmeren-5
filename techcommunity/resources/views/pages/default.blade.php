@@ -1,7 +1,3 @@
-@extends('pages.news')
-@extends('includes.header')
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +17,9 @@
 </head>
 <body charset="UTF-8">
 	<div class="container">
-		@yield('header')
+		@include('includes.header')
 
-		@yield('news')
+		@yield('content')
 
 
 		<!--Javascript loads behind the page for the loading speed-->
