@@ -31,6 +31,7 @@ Route::get('welcome', function () {
 // });
 
 Route::resource('posts', 'PostController');
-Route::get('form', function () {
-    return view('pages.create');
+
+Route::get('header', function () {
+    return view('includes.header');
 });

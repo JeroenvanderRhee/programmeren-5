@@ -1,3 +1,5 @@
+@section('news')
+
 <h1>News</h1>
 
 <style>
@@ -79,7 +81,4 @@ a:hover{
 
 	@endif
 
-
-
-
-		
+@show		

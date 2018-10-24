@@ -1,3 +1,4 @@
+@section('header')
 <style>
 /*Navigation*/
 
@@ -27,7 +28,7 @@ nav ul li:first-child{
 nav ul li a{
 	display: block;
 	padding: 25px 30px;
-	font-family: 'Source Sans Pro';
+	font-family: 'Ar Cena';
 	color: black;
 	text-decoration: none;
 	font-size: 20px;
@@ -182,7 +183,7 @@ nav ul li a.visit{
 <div class="collum ExtraLarge-1">
  	<div class="Logo">
 		<a href="index.php">
-			<img src="img/Logo.png"/>
+			<img src="uploads/Logo.png"/>
 		</a>
 	</div>
 	<nav>
@@ -190,10 +191,7 @@ nav ul li a.visit{
 			<li class="menu"><a><b>&equiv;</b>  Menu</a></li>
 			<li>
 				<a href="index.php" class="visit">Home</a>
-			</li>
-			<li class="hover">
-				<a href="AboutUs.php">About us</a>
-			</li>
+			</li> 
 			<li class="hover">
 				<a href="Contact.php">Contact</a>
 			</li>
@@ -203,3 +201,5 @@ nav ul li a.visit{
 		</ul>
 	</nav>
 </div>
+
+        @show
