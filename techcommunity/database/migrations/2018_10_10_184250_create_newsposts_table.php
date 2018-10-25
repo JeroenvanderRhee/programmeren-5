@@ -15,10 +15,8 @@ class CreateNewspostsTable extends Migration
     {
         Schema::create('newsposts', function (Blueprint $table) {
             $table->increments('id')->unique;
-            $table->ipAddress('url');   
             $table->string('title');
-            $table->longText('description_post');
-            $table->longText('long_text');
+            $table->longText('body_text');
             $table->string('uploaded_file');
             $table->dateTime('created_at_date');
             $table->string('created_by_user');

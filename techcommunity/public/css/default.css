@@ -1,0 +1,177 @@
+/*Navigation*/
+nav{
+	height: 80px;
+}
+
+nav ul{
+	float: right;
+	margin-right: 5%;
+	height:80px;
+	list-style:none;
+}
+
+nav ul li{
+	display: inline-block;
+}
+
+nav ul li:first-child{
+	display: none;
+}
+
+.menu{
+	display:none;
+}
+
+nav ul li a{
+	display: block;
+	padding: 25px 30px;
+	font-family: 'Ar Cena';
+	color: black;
+	text-decoration: none;
+	font-size: 20px;
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+}
+
+nav ul li a i{
+	margin-right: 5px;
+}
+
+nav ul li a.visit{
+	font-weight:bold;
+	color:rgb(136,188,92);
+}
+
+/*Media queries*/
+@media (max-width: 768px) {
+	nav{
+	    height: 80px;
+	}
+
+	nav ul{
+		position: relative;
+		z-index: 99;
+		right: 0;
+		width: 180px;
+	}
+
+	nav ul li{
+		display: none;
+
+	}
+
+	nav ul li:first-child{
+		display: inline-block !important;
+		cursor: pointer;
+		border: 0px !important;
+	}
+
+	nav ul li:first-child a{
+		border: 0px;
+	}
+
+	nav ul li a{
+		display: block;
+	    padding: 25px 50px;
+	   	text-decoration: none;
+	    color: black;
+	    background: white;
+	    text-align: left;
+	}
+
+	nav ul li a:hover{
+		color:rgb(136,188,92)
+	}
+}
+
+.min-height-1{
+	min-height: 1px;
+}
+
+/*Home page*/
+.post-div{
+	margin-top:10px;
+	margin-bottom:10px;
+	-webkit-box-shadow: 2px 2px 20px -4px rgba(0,0,0,0.67);
+	-moz-box-shadow: 2px 2px 20px -4px rgba(0,0,0,0.67);
+	box-shadow: 2px 2px 20px -4px rgba(0,0,0,0.67);
+
+	height:150px;
+}
+
+.post-div > img{
+	max-width:230px;
+	float:left;
+	max-height:120px;
+	padding:10px;
+}
+
+.text-section{
+	width:calc(100% - 250px);
+	float:right;
+}
+
+h2, h1{
+	font-size: 20pt;
+    font-family: "Ar Cena";
+    padding: 10px !important;
+    margin: 0px;
+    color:#0D8DFF;	
+}
+
+div > h1{
+	padding:0px !important;
+}
+
+p{
+	padding:10px;
+	font-weight:500;
+	margin:0px;
+}
+
+a{
+	color:#0D8DFF;	
+	font-weight:500;
+	text-decoration:none;
+	padding:10px;
+	padding-top:40px;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+/*Single Post*/
+/*.single_post > img{
+	max-height:80vh;
+	float:left;
+	max-width:100%;
+}
+*/
+.single_post > h2{
+	font-size: 20pt;
+    font-family: "Ar Cena";
+    padding: 10px !important;
+    margin: 0px;
+    color:#0D8DFF;	
+}
+
+.single_post > p{
+	padding:10px;
+	font-weight:500;
+	margin:0px;
+}
+
+.single_post > a{
+	color:#0D8DFF;	
+	font-weight:500;
+	text-decoration:none;
+	padding:10px;
+	padding-top:40px;
+}
+
+.single_post > a:hover{
+	text-decoration: underline;
+}

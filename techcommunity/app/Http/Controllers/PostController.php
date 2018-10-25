@@ -14,7 +14,14 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts =  Newspost::all();
+        $posts =  Newspost::orderBy('created_at_date', 'desc')->paginate(5);
+
+        foreach($posts as $post){
+            if(strlen($post->body_text) >= 200){
+                $post->body_text = substr_replace ($post->body_text , "..." , 200);
+            }
+        }
+
         return view("pages.news")->with('posts', $posts);
     }
 
@@ -43,18 +50,8 @@ class PostController extends Controller
         'long_text' => 'required'
       ]);
 
-
-
-       // $table = new Newspost([
-       //  'uploaded_file'=> "https://disney-plaatjes.nl/files/disney/mickey-mouse/mickey-mouse-disney-829.jpg",
-       //  'created_at_date'=> date("Y-m-d h:i:sa"),
-       //  'created_by_user'=> "Jeroen",
-       //  'ip_created_at'=> $_SERVER['REMOTE_ADDR'],
-       //  'active'=> "1"]);
-
       $table = new Newspost();
       $table->title = $request->get('title');
-      $table->url = "URL";
       $table->description_post = $request->get('description_post');
       $table->long_text = $request->get('long_text');
       $table->uploaded_file = "https://disney-plaatjes.nl/files/disney/mickey-mouse/mickey-mouse-disney-829.jpg";
