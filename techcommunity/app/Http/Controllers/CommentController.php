@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Newspost;
 use App\Comment;
+use App\Post_Comment_Link;
 
-class PostController extends Controller
+
+
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,15 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts =  Newspost::orderBy('created_at_date', 'desc')->paginate(5);
-
-        foreach($posts as $post){
-            if(strlen($post->body_text) >= 200){
-                $post->body_text = substr_replace ($post->body_text , "..." , 200);
-            }
-        }
-
-        return view("pages.news")->with('posts', $posts);
+        
     }
 
     /**
@@ -34,7 +28,6 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view("pages.create");
     }
 
     /**
@@ -46,23 +39,20 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'title'=>'required',
-        'description_post'=> 'required',
-        'long_text' => 'required'
+        'comment'=>'required',
       ]);
 
-      $table = new Newspost();
-      $table->title = $request->get('title');
-      $table->description_post = $request->get('description_post');
-      $table->long_text = $request->get('long_text');
-      $table->uploaded_file = "https://disney-plaatjes.nl/files/disney/mickey-mouse/mickey-mouse-disney-829.jpg";
+      $post_id = $request->get('post_id');
+
+      $table = new Comment();
+      $table->comment_text = $request->get('comment');
       $table->created_at_date = date("Y-m-d H:i:s");
       $table->created_by_user = "Jeroen";
       $table->ip_created_at = $_SERVER['REMOTE_ADDR'];
-      $table->active = 1;
+      $table->post_id = $post_id;
       $table->save();
-    
-       return "Saved";
+
+       return redirect("posts/$post_id");
     }
 
     /**
@@ -73,11 +63,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Newspost::find($id);
-        
-        $post->comment = Comment::where('post_id', $id)->get();
 
-        return view('pages.single_post')->with('post', $post);
     }
 
     /**
