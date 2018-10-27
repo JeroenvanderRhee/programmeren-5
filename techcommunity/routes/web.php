@@ -15,6 +15,10 @@ Route::get('welcome', function () {
     return view('welcome');
 });
 
+Route::get('/', function () {
+    return view('layouts.app');
+});
+
 // Route::get('/news', function () {
 // 	$description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula augue id commodo auctor. Mauris in justo sollicitudin, suscipit augue non, cursus lacus. ";
 //     $description = substr_replace ($description , "..." , 200);
@@ -34,3 +38,7 @@ Route::resource('posts', 'PostController');
 
 Route::resource('comments', 'CommentController');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

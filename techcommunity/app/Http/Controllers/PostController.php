@@ -33,7 +33,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        
         return view("pages.create");
     }
 
@@ -57,7 +57,7 @@ class PostController extends Controller
       $table->long_text = $request->get('long_text');
       $table->uploaded_file = "https://disney-plaatjes.nl/files/disney/mickey-mouse/mickey-mouse-disney-829.jpg";
       $table->created_at_date = date("Y-m-d H:i:s");
-      $table->created_by_user = "Jeroen";
+      $table->created_by = auth()->user()->id;
       $table->ip_created_at = $_SERVER['REMOTE_ADDR'];
       $table->active = 1;
       $table->save();
