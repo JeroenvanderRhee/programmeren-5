@@ -11,13 +11,14 @@
 |
 */
 
-Route::get('welcome', function () {
+Route::get('contact', function () {
     return view('welcome');
 });
 
 Route::get('/', function () {
     return view('layouts.app');
 });
+
 
 // Route::get('/news', function () {
 // 	$description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula augue id commodo auctor. Mauris in justo sollicitudin, suscipit augue non, cursus lacus. ";

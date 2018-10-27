@@ -47,7 +47,7 @@ class CommentController extends Controller
       $table = new Comment();
       $table->comment_text = $request->get('comment');
       $table->created_at_date = date("Y-m-d H:i:s");
-      $table->created_by_user = "Jeroen";
+      $table->created_by_user = auth()->user()->name;
       $table->ip_created_at = $_SERVER['REMOTE_ADDR'];
       $table->post_id = $post_id;
       $table->save();

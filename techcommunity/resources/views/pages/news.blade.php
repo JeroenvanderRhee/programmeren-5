@@ -1,4 +1,4 @@
-@extends('pages.default')
+@extends('layouts.app')
 @section('content')
 
 <h1>News</h1>
