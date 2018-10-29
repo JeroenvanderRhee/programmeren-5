@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('layouts.app');
 });
 
+Route::get('/search', function () {
+    return view('pages.filtering');
+});
 
 // Route::get('/news', function () {
 // 	$description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula augue id commodo auctor. Mauris in justo sollicitudin, suscipit augue non, cursus lacus. ";
@@ -36,6 +39,8 @@ Route::get('/', function () {
 // });
 
 Route::resource('posts', 'PostController');
+
+Route::get('/searching', 'PostController@search');
 
 Route::resource('comments', 'CommentController');
 

@@ -74,7 +74,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Newspost::find($id);
-        
+
         $post->comment = Comment::where('post_id', $id)->get();
 
         return view('pages.single_post')->with('post', $post);
@@ -114,5 +114,47 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function search(Request $request)
+    {
+        $request->validate([
+        'search'=>'required',
+      ]);
+
+        $searchterm = $request->get('search');
+
+        $query =  (new Newspost)->newQuery();
+
+         $searchable = [
+            'title',
+            'body_text',
+            'id'
+        ];
+                
+
+         foreach($searchable as $collumn){
+             $query->orWhere($collumn, 'LIKE', '%' .$searchterm . '%');
+         }
+
+
+         $posts = $query->get();
+         
+        foreach($posts as $post){
+            if(strlen($post->body_text) >= 200){
+                $post->body_text = substr_replace ($post->body_text , "..." , 200);
+            }
+        }
+
+        return view("pages.news")->with('posts', $posts);
+
     }
 }
