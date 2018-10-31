@@ -3,7 +3,11 @@
 @section('content')
 
 	<div class="single_post">
-		<img class="xl-1-1" src="{{$post->uploaded_file}}"/>
+
+		@if($post->image != "uploads/No-image.jpg")
+			<img class="xl-1-8" src="{{ asset($post->image)}}"/>
+		@endif
+
 		<h1>
 			{{$post->title}}
 		</h1>

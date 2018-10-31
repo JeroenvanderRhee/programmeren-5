@@ -23,6 +23,7 @@ class PostController extends Controller
             }
         }
 
+        $posts->pagetitle = "Posts";
         return view("pages.news")->with('posts', $posts);
     }
 
@@ -47,15 +48,14 @@ class PostController extends Controller
     {
         $request->validate([
         'title'=>'required',
-        'description_post'=> 'required',
-        'long_text' => 'required'
+        'body_text' => 'required',
+        'category' => 'required'
       ]);
 
       $table = new Newspost();
       $table->title = $request->get('title');
-      $table->description_post = $request->get('description_post');
-      $table->long_text = $request->get('long_text');
-      $table->uploaded_file = "https://disney-plaatjes.nl/files/disney/mickey-mouse/mickey-mouse-disney-829.jpg";
+      $table->body_text = $request->get('body_text');
+      $table->categorie = $request->get('category');
       $table->created_at_date = date("Y-m-d H:i:s");
       $table->created_by = auth()->user()->id;
       $table->ip_created_at = $_SERVER['REMOTE_ADDR'];
@@ -75,7 +75,7 @@ class PostController extends Controller
     {
         $post = Newspost::find($id);
 
-        $post->comment = Comment::where('post_id', $id)->get();
+        $post->comment = Comment::where('post_id', $id)->orderBy('created_at_date', 'asc')->get();
 
         return view('pages.single_post')->with('post', $post);
     }
@@ -113,7 +113,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $query = Newspost::find($id);
+        $query->delete();
+
+         return redirect('home');
     }
 
 
@@ -126,11 +129,14 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
-        $request->validate([
-        'search'=>'required',
-      ]);
+      //   $request->validate([
+      //   'search'=>'required',
+      // ]);
 
         $searchterm = $request->get('search');
+        $filters = array();
+        array_push($filters, $request->get('cb1'),$request->get('cb2'),$request->get('cb3'),$request->get('cb4'));
+
 
         $query =  (new Newspost)->newQuery();
 
@@ -141,12 +147,20 @@ class PostController extends Controller
         ];
                 
 
-         foreach($searchable as $collumn){
-             $query->orWhere($collumn, 'LIKE', '%' .$searchterm . '%');
+        if($searchterm !=""){
+             foreach($searchable as $collumn){
+                 $query->orWhere($collumn, 'LIKE', '%' .$searchterm . '%');
+             }
+        }
+
+         foreach($filters as $filter){
+            if($filter != ""){
+                $query->orWhere('categorie', '=', $filter);
+            }
          }
 
 
-         $posts = $query->get();
+        $posts = $query->orderBy('created_at_date', 'desc')->get();
          
         foreach($posts as $post){
             if(strlen($post->body_text) >= 200){
@@ -154,7 +168,30 @@ class PostController extends Controller
             }
         }
 
+        $posts->pagetitle = "Search results";
         return view("pages.news")->with('posts', $posts);
 
     }
 }
+
+
+
+
+    // $category = array();
+
+        // $posts->category = $category;
+
+             // foreach($searchable as $collumn){
+         //     $query->where('price', '<=', $request->input('priceMax'));
+         // }
+
+         // print_r()
+
+         // $query->where('categorie', '==', $request->input('category'));
+
+         // $category = 0;
+         //    if($request->input('cb1') !== ""){
+         //        $category += 1;
+               
+
+         //    }

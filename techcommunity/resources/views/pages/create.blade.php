@@ -1,4 +1,4 @@
- @extends('pages.default')
+ @extends('layouts.app')
 
 
 @section('content')
@@ -13,15 +13,41 @@
 
 <form method="POST" action="{{ route('posts.store') }}">
 		@csrf
-		<label>Title:</label>
-		<input type="text" name="title"/>
+		<div class="form-group">
+			<label>Title:</label>
+			<input class="form-control" type="text" name="title"/>
+		</div>
 		
-		<label>Description:</label>
-		<input type="textarea" name="description_post"/>
+		<div class="form-group">
+			<label>Body Text:</label>
+			<input class="form-control"  id = "article-ckeditor" type="textarea" name="body_text"/>
+		</div>
+
+		<div class="form-group">
+			<label>Choose a category:</label>
+
+			<div class="form-check form-check-inline">
+	  			<input class="form-check-input" type="radio" name="category" id="inlineRadio1" value="No Category">
+	 			<label class="form-check-label" for="inlineRadio1">No Category</label>
+			</div>
+
+			<div class="form-check form-check-inline">
+	  			<input class="form-check-input" type="radio" name="category" id="inlineRadio1" value="IoT">
+	 			<label class="form-check-label" for="inlineRadio1">IoT</label>
+			</div>
+			<div class="form-check form-check-inline">
+	  			<input class="form-check-input" type="radio" name="category" id="inlineRadio3" value="Hardware">
+	  			<label class="form-check-label" for="inlineRadio3">Hardware</label>
+			</div>
+			<div class="form-check form-check-inline">
+	  			<input class="form-check-input" type="radio" name="category" id="inlineRadio4" value="Software">
+	  			<label class="form-check-label" for="inlineRadio4">Software</label>
+			</div>
+		</div>
 		
-		<label>Body Text:</label>
-		<input id = "article-ckeditor" type="textarea" name="long_text"/>
-		
-		<button type="submit">Create</button>
+		<div class="form-group">
+			<button class="btn btn-primary" type="submit">Create</button>
+		</div>
+	</div>
 </form>
 @endsection

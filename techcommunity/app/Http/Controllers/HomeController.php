@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Newspost;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,15 @@ class HomeController extends Controller
     public function index()
     {   
         if((auth()->user()->role) == 'author'){
-            return view('home');
+
+            $query =  (new Newspost)->newQuery();
+
+            $query->where('created_by', '=', auth()->user()->id);
+
+            $posts = $query->orderBy('created_at_date', 'desc')->get();
+
+
+            return view('home')->with('posts', $posts);
         }
         elseif(((auth()->user()->role) == 'user')){
             return view('user');
