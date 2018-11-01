@@ -3,6 +3,9 @@
 
 @section('content')
 <h1>Create page</h1>
+<?php
+	print_r($errors);
+?>
   @if ($errors->any())
         <ul>
             @foreach ($errors->all() as $error)
@@ -11,7 +14,8 @@
         </ul>
     @endif
 
-<form method="POST" action="{{ route('posts.store') }}">
+
+<form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
 		@csrf
 		<div class="form-group">
 			<label>Title:</label>
@@ -20,7 +24,8 @@
 		
 		<div class="form-group">
 			<label>Body Text:</label>
-			<input class="form-control"  id = "article-ckeditor" type="textarea" name="body_text"/>
+			<textarea class="form-control"  id = "article-ckeditor" type="textarea" name="body_text">
+			</textarea>
 		</div>
 
 		<div class="form-group">
@@ -43,6 +48,10 @@
 	  			<input class="form-check-input" type="radio" name="category" id="inlineRadio4" value="Software">
 	  			<label class="form-check-label" for="inlineRadio4">Software</label>
 			</div>
+			<div class="form-group">
+    			<label for="exampleFormControlFile1">Upload a picture</label>
+    			<input type="file" class="form-control-file" id="exampleFormControlFile1" name="uploadimage">
+  			</div>
 		</div>
 		
 		<div class="form-group">
@@ -50,4 +59,5 @@
 		</div>
 	</div>
 </form>
+
 @endsection

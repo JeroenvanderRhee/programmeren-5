@@ -39,7 +39,7 @@
                                         <td>{{$post->categorie}}</td>
                                         <td>{{$post->created_at_date}}</td>
                                         <td>{{$post->active}}</td>
-                                        <td><a href="">Update</a></td>
+                                        <td><a class="btn btn-link" href="posts/{{$post->id}}/edit">Edit Post</a></td>
                                         <td>
                                             <form action="posts/{{ $post->id }}" method="POST">
                                                 {{ csrf_field() }}
