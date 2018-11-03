@@ -34,3 +34,40 @@
 	color:#3490dc;
 	font-weight:bold;
 }
+
+/*Toggle*/
+.toggle > form > input[name='state_post']{
+	visibility: hidden;
+}
+
+.on, .off{
+	padding:4.5px;
+	float:left;
+	background-color:rgba(222,222,222,0.7);
+	border:1px solid rgba(222,222,222,1);
+}
+
+.on-on{
+	background-color:#17DE9D;
+}
+
+.off-off{
+	background-color:#FF2831;
+}
+
+/*.toggle > form > input[name='state_post']:checked+label{
+	background-color:red;
+}*/
+
+/*.toggle > input[type='radio']:after{
+	content:'1';
+	visibility: visible;
+}
+
+.toggle > input[type='radio']:before{
+	content:'0';
+	visibility: visible;
+	border:1px solid;
+	padding:5px;
+	background-color:lightgray;
+}*/

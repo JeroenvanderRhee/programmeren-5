@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts =  Newspost::orderBy('created_at_date', 'desc')->paginate(5);
+        $posts =  Newspost::where('active', '1')->orderBy('created_at_date', 'desc')->paginate(5);
 
         foreach($posts as $post){
             if(strlen($post->body_text) >= 200){
@@ -224,6 +224,34 @@ class PostController extends Controller
 
         $posts->pagetitle = "Search results";
         return view("pages.news")->with('posts', $posts);
+
+    }
+
+
+      /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function statue(Request $request)
+    {
+        $request->validate([
+        'id'=>'required',
+        'state_post' => 'required'
+        ]);
+
+        $id = $request->get('id');
+
+        $querycontrolle = Newspost::find($id);
+
+        if($querycontrolle->created_by == auth()->user()->id){
+            Newspost::where('id', $id)->update([
+            'active' =>  $request->get('state_post')
+            ]);
+        }
+
+        return redirect("home");
 
     }
 

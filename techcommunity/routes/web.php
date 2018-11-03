@@ -42,6 +42,8 @@ Route::resource('posts', 'PostController');
 
 Route::get('/searching', 'PostController@search');
 
+Route::post('/active', 'PostController@statue');
+
 Route::resource('comments', 'CommentController');
 
 

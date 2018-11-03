@@ -38,7 +38,37 @@
                                         <td><a href="posts/{{$post->id}}">{{$post->title}}</a></td>
                                         <td>{{$post->categorie}}</td>
                                         <td>{{$post->created_at_date}}</td>
-                                        <td>{{$post->active}}</td>
+                                        <td class="toggle">
+
+                                            <form method="POST" action="http://localhost/programmeren-5/techcommunity/public/active">
+                                                {{ csrf_field() }}
+
+                                               <!--  <input type="checkbox" name="state_post" value="1"onChange="this.form.submit()"/> -->
+                                            
+                                                @if($post['active'] == 1)
+                                           
+                                                    <input type="checkbox" name="state_post" value = "0" id="active_0{{$post->id}}" onChange="this.form.submit()"/>
+                                                    <label class="off" for="active_0{{$post->id}}">0</label>
+                                                    <label class="on on-on" for="active_0{{$post->id}}">1</label>  
+
+                                                    <!-- <input type="checkbox" name="state_post" value = "1" id="active_1" checked/>
+                                                    <label class="form-check-label" for="active_1">1</label> -->
+                                                @else
+
+                                                    <!-- <input type="checkbox" name="state_post" value = "0" id="active_0" checked/>
+                                                    <label class="form-check-label" for="active_0">0</label>
+
+                                                    <input type="checkbox" name="state_post" value = "1" id="active_1" onChange="this.form.submit()"/>
+                                                    <label class="form-check-label" for="active_1">1</label> -->
+
+                                                    <input type="checkbox" name="state_post" value = "1" id="active_1{{$post->id}}" onChange="this.form.submit()"/>
+                                                    <label class="off off-off" for="active_1{{$post->id}}">0</label>
+                                                     <label class="on" for="active_1{{$post->id}}">1</label>
+                                                @endif
+                                                <input type="hidden" name="id" value = "{{$post->id}}"/>
+                                            </form>
+                                        </td>
+
                                         <td><a class="btn btn-link" href="posts/{{$post->id}}/edit">Edit Post</a></td>
                                         <td>
                                             <form action="posts/{{ $post->id }}" method="POST">
