@@ -55,6 +55,10 @@
 	background-color:#FF2831;
 }
 
+textarea[name='body_text']{
+	height:400px;
+}
+
 /*.toggle > form > input[name='state_post']:checked+label{
 	background-color:red;
 }*/

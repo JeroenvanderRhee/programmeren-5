@@ -42,6 +42,9 @@ Route::resource('posts', 'PostController');
 
 Route::get('/searching', 'PostController@search');
 
+Route::get('/editprofile', 'UpdateUser@edit');
+Route::post('/updateprofile', 'UpdateUser@update');
+
 Route::post('/active', 'PostController@statue');
 
 Route::resource('comments', 'CommentController');
@@ -50,3 +53,5 @@ Route::resource('comments', 'CommentController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

@@ -3,9 +3,6 @@
 
 @section('content')
 <h1>Create page</h1>
-<?php
-	print_r($errors);
-?>
   @if ($errors->any())
         <ul>
             @foreach ($errors->all() as $error)
@@ -24,7 +21,7 @@
 		
 		<div class="form-group">
 			<label>Body Text:</label>
-			<textarea class="form-control"  id = "article-ckeditor" type="textarea" name="body_text">
+			<textarea class="form-control" name="body_text">
 			</textarea>
 		</div>
 

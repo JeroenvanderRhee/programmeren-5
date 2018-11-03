@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    You are logged in as user!
+                    <p>You are logged in as user! Place five comments to get access to place posts. </p>
+                    <a class="btn btn-primary" href="editprofile" role="button">Click here to change your credentials!</a>
                 </div>
             </div>
         </div>

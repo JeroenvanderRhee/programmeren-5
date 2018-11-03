@@ -88,7 +88,7 @@
 		</div>
 		
 		<div class="form-group">
-			<button class="btn btn-primary" type="submit">Create</button>
+			<button class="btn btn-primary" type="submit">Update</button>
 		</div>
 	</div>
 </form>
