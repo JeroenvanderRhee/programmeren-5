@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                   <p> You are logged in admin!</p>
+                   <p> You are logged in author!</p>
                     <a class="btn btn-primary" href="posts/create" role="button">Click here to create a post!</a>
 
                     @if(count($posts) >= 1)
