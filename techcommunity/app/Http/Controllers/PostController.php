@@ -227,8 +227,6 @@ class PostController extends Controller
     }
 
 
-
-     $fillable = array('title', 'body_text', 'image','categorie');
         //Update het bericht waar er een aanvraag voor binnen kwam
         Newspost::findOrFail($id)->update([
         'title' =>  $request->get('title'),
