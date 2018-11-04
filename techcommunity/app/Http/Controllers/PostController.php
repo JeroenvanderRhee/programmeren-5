@@ -71,49 +71,36 @@ class PostController extends Controller
         'category' => 'required'
       ]);
 
-    //Als er een afbeelding is geupload
     if ($_FILES['uploadimage']['size'] > 0){
-        //Maak array voor errors
         $upload_image = 0;
         $image_errors = [];
-
-        //Haal de naam op van afbeelding en definieer toekomstige naam + pad
-        $imageName = basename($_FILES["uploadimage"]["name"]);
+         $imageName = basename($_FILES["uploadimage"]["name"]);
         $imageExtension = strtolower(pathinfo($imageName,PATHINFO_EXTENSION));
         $image_prefix = date("ynjHis");
         $imageDestination = "uploads/users/" . $image_prefix .$imageName;
      
-        //Als het bestand bestaat een error geven
         if (file_exists($imageDestination)) {
             array_push($image_errors, "This image already exist. Give it just another name");
             $upload_image = 0;
         };
-
-        //Controlleer of het echt een afbeelding is
-        $extensions = ['jpg', 'jpeg', 'png', 'eps', 'gif'];
-
-        $upload_image_extension = 0;
-        foreach($extensions as $extension){
+         $extensions = ['jpg', 'jpeg', 'png', 'eps', 'gif'];
+         foreach($extensions as $extension){
             if($extension == $imageExtension){
-                $upload_image_extension = 1;
+                $upload_image = 1;
             }
         }
-
-        //Anders error geven.
-        if($upload_image_extension == 0){
+         if($upload_image == 0){
             array_push($image_errors, "Your picture have a wrong extension. The only extensions which alowed are: jpg, jpeg, png, eps and gif.");
-            $upload_image = 0;
         }
-
-        //Als de controlle nog 1 is bestand uploaden
-        if($upload_image == 1){
+         if($upload_image == 1){
             move_uploaded_file($_FILES["uploadimage"]["tmp_name"], $imageDestination);
             $imagepath = $imageDestination;
         } 
+         else{
+            $imagepath = "uploads/No-image.jpg";
+        }
     }
-
     else{
-        //Anders plaats een placeholder
          $imagepath ="uploads/No-image.jpg";
     }
            
@@ -182,48 +169,37 @@ class PostController extends Controller
         'category' => 'required'
       ]);
 
-    //standaard afbeelding
-    $imagepath ="uploads/No-image.jpg";
-
-     //Als er een afbeelding is geupload
-    if ($_FILES['uploadimage']['size'] > 0){
-        //Maak array voor errors
+       if ($_FILES['uploadimage']['size'] > 0){
         $upload_image = 0;
         $image_errors = [];
-
-        //Haal de naam op van afbeelding en definieer toekomstige naam + pad
-        $imageName = basename($_FILES["uploadimage"]["name"]);
+         $imageName = basename($_FILES["uploadimage"]["name"]);
         $imageExtension = strtolower(pathinfo($imageName,PATHINFO_EXTENSION));
         $image_prefix = date("ynjHis");
         $imageDestination = "uploads/users/" . $image_prefix .$imageName;
      
-        //Als het bestand bestaat een error geven
         if (file_exists($imageDestination)) {
             array_push($image_errors, "This image already exist. Give it just another name");
             $upload_image = 0;
-        }
-
-        //Controlleer of het echt een afbeelding is
-        $extensions = ['jpg', 'jpeg', 'png', 'eps', 'gif'];
-
-        $upload_image_extension = 0;
-        foreach($extensions as $extension){
+        };
+         $extensions = ['jpg', 'jpeg', 'png', 'eps', 'gif'];
+         foreach($extensions as $extension){
             if($extension == $imageExtension){
-                $upload_image_extension = 1;
+                $upload_image = 1;
             }
         }
-
-        //Anders error geven.
-        if($upload_image_extension == 0){
+         if($upload_image == 0){
             array_push($image_errors, "Your picture have a wrong extension. The only extensions which alowed are: jpg, jpeg, png, eps and gif.");
-            $upload_image = 0;
         }
-
-        //Als de controlle nog 1 is bestand uploaden
-        if($upload_image == 1){
+         if($upload_image == 1){
             move_uploaded_file($_FILES["uploadimage"]["tmp_name"], $imageDestination);
             $imagepath = $imageDestination;
         } 
+         else{
+            $imagepath = "uploads/No-image.jpg";
+        }
+    }
+    else{
+         $imagepath ="uploads/No-image.jpg";
     }
 
 

@@ -11,7 +11,7 @@
 			{{$post['0']->title}}
 		</h1>
 		<p>
-			{{$post['0']->body_text}}
+			{!! $post['0']->body_text !!}
 		</p>
 	</div>
 	

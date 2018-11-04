@@ -14,7 +14,7 @@
 		
 		<div class="form-group">
 			<label>Body Text:</label>
-			<textarea class="form-control"  id = "article-ckeditor" type="textarea" name="body_text">{{$post->body_text}}</textarea>
+			<textarea class="form-control"  id = "article-ckeditor" type="textarea" name="body_text">{{ $post->body_text }}</textarea>
 		</div>
 
 		<div class="form-group">
