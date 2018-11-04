@@ -4,13 +4,7 @@
 @section('content')
 @auth
 <h1>Update page</h1>
-  @if ($errors->any())
-        <ul>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
+
 <p>
 	After changing your credentials, you will logout!
 </p>

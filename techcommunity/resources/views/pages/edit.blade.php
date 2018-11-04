@@ -3,15 +3,8 @@
 
 @section('content')
 <h1>Update page</h1>
-  @if ($errors->any())
-        <ul>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
 
-<form method="POST" action="{{ route('posts.update', $post['id']) }}">
+<form method="POST" action="{{ route('posts.update', $post['id']) }}" enctype="multipart/form-data">
 		@csrf
 		{{ method_field('PUT')}}
 		<div class="form-group">
@@ -86,6 +79,10 @@
 	  			<label class="form-check-label" for="inlineRadio4">Software</label>
 			</div>
 		</div>
+		<div class="form-group">
+    			<label for="exampleFormControlFile1">Upload a picture</label>
+    			<input type="file" class="form-control-file" id="exampleFormControlFile1" name="uploadimage">
+  			</div>
 		
 		<div class="form-group">
 			<button class="btn btn-primary" type="submit">Update</button>

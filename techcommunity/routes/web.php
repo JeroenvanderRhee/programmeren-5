@@ -11,34 +11,14 @@
 |
 */
 
-Route::get('contact', function () {
-    return view('welcome');
-});
-
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('pages.homepage');
 });
-
-Route::get('/search', function () {
-    return view('pages.filtering');
-});
-
-// Route::get('/news', function () {
-// 	$description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula augue id commodo auctor. Mauris in justo sollicitudin, suscipit augue non, cursus lacus. ";
-//     $description = substr_replace ($description , "..." , 200);
-
-// 	$url = "1/";
-// 	$url .= str_replace(" ","-","Titel van dit project");
-	
-// 	$data = array(
-// 		'id' => "1",
-// 		'title' => "Titel van het project",
-// 		'description' => $description,
-// 		'url' => $url,);
-//     return view('pages.news') -> with($data);
-// });
 
 Route::resource('posts', 'PostController');
+
+Route::get('getposts', 'AdminController@getposts')->middleware('auth', 'roleadmin');
+Route::resource('admin', 'AdminController')->middleware('auth', 'roleadmin');;
 
 Route::get('/searching', 'PostController@search');
 
@@ -47,7 +27,8 @@ Route::post('/updateprofile', 'UpdateUser@update');
 
 Route::post('/active', 'PostController@statue');
 
-Route::resource('comments', 'CommentController');
+
+Route::post('comments', 'CommentController@store');
 
 
 Auth::routes();

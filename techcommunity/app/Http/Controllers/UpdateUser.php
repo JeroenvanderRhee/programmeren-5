@@ -7,10 +7,21 @@ use App\User;
 
 class UpdateUser extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    // Authorisation before showing pages
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function edit()
     {	
+        //Return pagina waar je je profiel kan editten
         return view("pages.editprofile");
-        // return view('pages.debug')->with('data', $data);
     }
 
     /**
@@ -22,18 +33,22 @@ class UpdateUser extends Controller
     public function update(Request $request)
     {
 
+        //Controlleer verplichte velden
         $request->validate([
         'email'=>'required',
         'name' => 'required',
       ]);
 
+        //Haal eigen ID op
         $id = auth()->user()->id;
 
+        //Zoek eigen profiel en update
         User::find($id)->update([
         'name' =>  $request->get('name'),
         'email' => $request->get('email'),
         ]);
 
+        //En log uit
          return redirect('logout');
     }
 }

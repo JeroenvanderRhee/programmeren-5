@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Tech Community') }}
+                    Tech Community
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -34,14 +34,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li  class="nav-item">
-                            <a class="nav-link" href="{{ url('/posts') }}">Home</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/contact') }}">Contact</a>
-                        </li>
-                    </ul>
+                    
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -84,10 +77,23 @@
         <main class="py-4">
             <div class="wrap xl-center">
                 <div class="col xl-8-10 xl-left">
+                  @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                              <div class="alert alert-danger" role="alert">
+                                {{ $error }}
+                               </div>
+                            @endforeach
+                    @endif
+                    
                     @yield('content')
                 </div>
             </div>
         </main>
     </div>
+    <footer class="footer" style="background-color:lightgray;padding-top:10px;padding-bottom:10px;">
+      <div class="container">
+        <span class="text-muted" style="color:black !important;">Realised by Jeroen van der Rhee.</span>
+      </div>
+    </footer>
 </body>
 </html>
